@@ -1,21 +1,13 @@
-import os  , json
-
 import joblib
 from flask import Flask, request ,jsonify
 
-from crop_disease_prediction import get_pred_img
+# from crop_disease_prediction import get_pred_img
 from crop_recommend import get_crop
 from ferti_recommend import get_fertilizer
 
 
-from flask_cors import CORS
-
-
 app = Flask(__name__)
-CORS(app)
 
-UPLOAD_FOLDER = 'User_Upload_Image'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route("/")
 def root():
@@ -39,10 +31,13 @@ async def disease_predict():
                 return  jsonify({'error': 'No selected file'}), 400
 
 
-            disease_name = get_pred_img( crop_name , image_file)
+            # disease_name = get_pred_img( crop_name , image_file)
             # print(disease_name)
+
+            print('cropname' , crop_name )
+            print('image '  , image_file )
             
-            return {'diseaseName' : disease_name}
+            return {'diseaseName' : "lauda lahsun"}
 
 
         except Exception as e:
