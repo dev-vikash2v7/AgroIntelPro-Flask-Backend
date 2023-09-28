@@ -32,10 +32,10 @@ def disease_predict():
 
 
             disease_name = get_pred_img( crop_name , image_file)
-            print(disease_name)
+            # print(disease_name)
 
-            print('cropname' , crop_name )
-            print('image '  , image_file )
+            # print('cropname' , crop_name )
+            # print('image '  , image_file )
             
             return {'diseaseName' : disease_name}
 

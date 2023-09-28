@@ -32,12 +32,13 @@ def get_pred_img(crop_type ,image_file ):
     # print(img_array.shape)#(1,64,64,3)
 
    # Make predictions using the model
-    # predictions = model.predict(img_array)
-    # # print('predictions  , ' , predictions)
-    # predicted_class = np.argmax(predictions, axis=1)[0]
+    predictions = model.predict(img_array)
+    # print('predictions  , ' , predictions)
+    predicted_class = np.argmax(predictions, axis=1)[0]
+    
     # print('predicted_class  , ' , predicted_class)
 
     # print(crop_disease_mapping)
 
      # Return the predicted class label
-    return crop_disease_mapping[crop_type][0]
+    return crop_disease_mapping[crop_type][predicted_class]
