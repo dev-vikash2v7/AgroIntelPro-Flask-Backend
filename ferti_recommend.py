@@ -31,12 +31,11 @@ def get_fertilizer( data  ):
         feature['Crop Type'] = crop_encode.transform([feature['Crop Type']])[0]
 
 
-        features_arr = list(feature_new.values())
+        features_arr = list(feature.values())
 
         predictions_encoded = model.predict([features_arr])
         ferti_name = ferti_encode.inverse_transform(predictions_encoded)[0]
 
-        print(ferti_name)
 
         return ferti_name
 

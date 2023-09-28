@@ -70,10 +70,10 @@ def fertilizer_recommend( ):
 
         try:
             fertilizer_name = get_fertilizer(features)
-        except :
+        except Exception as e:
             return jsonify({'error': str(e)}), 500
 
-        return fertilizer_name
+        return {"fertilizer_name" : fertilizer_name}
         
 
 if __name__ == '__main__':
