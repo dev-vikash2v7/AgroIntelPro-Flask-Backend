@@ -1,9 +1,9 @@
 import joblib
 from flask import Flask, request ,jsonify
 
-# from crop_disease_prediction import get_pred_img
-from crop_recommend import get_crop
-from ferti_recommend import get_fertilizer
+from utils.crop_disease_prediction import get_pred_img
+from utils.crop_recommend import get_crop
+from utils.ferti_recommend import get_fertilizer
 
 
 app = Flask(__name__)
@@ -16,7 +16,7 @@ def root():
 
 
 @app.route("/api/disease_predict" ,  methods=['POST'])
-async def disease_predict(): 
+def disease_predict(): 
     if request.method == 'POST':
 
         try:         
@@ -31,8 +31,8 @@ async def disease_predict():
                 return  jsonify({'error': 'No selected file'}), 400
 
 
-            # disease_name = get_pred_img( crop_name , image_file)
-            # print(disease_name)
+            disease_name = get_pred_img( crop_name , image_file)
+            print(disease_name)
 
             print('cropname' , crop_name )
             print('image '  , image_file )
