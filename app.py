@@ -37,7 +37,7 @@ def disease_predict():
             print('cropname' , crop_name )
             print('image '  , image_file )
             
-            return {'diseaseName' : "lauda lahsun"}
+            return {'diseaseName' : disease_name}
 
 
         except Exception as e:
