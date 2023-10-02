@@ -15,7 +15,7 @@ def get_fertilizer( data  ):
         # data['Potassium (%)'] = (data['K'] / data['NPK Total']) * 100
 
         feature = {
-        "Temparature"     :   data['temp'],
+        "Temparature"     :   data['temperature'],
         "Humidity"         : data['humidity'],
         "Moisture"             : data['moisture'],
         "Soil Type"          : data['soil_type'],
@@ -25,17 +25,15 @@ def get_fertilizer( data  ):
         "Phosphorous"         :   data['P']
         }
 
-
+        print(feature)
 
         feature['Soil Type'] = soil_encode.transform([feature['Soil Type']])[0]
         feature['Crop Type'] = crop_encode.transform([feature['Crop Type']])[0]
-
 
         features_arr = list(feature.values())
 
         predictions_encoded = model.predict([features_arr])
         ferti_name = ferti_encode.inverse_transform(predictions_encoded)[0]
-
 
         return ferti_name
 

@@ -32,8 +32,8 @@ def disease_predict():
 
 
             disease_name = get_pred_img( crop_name , image_file)
-            # print(disease_name)
 
+            # print(disease_name)
             # print('cropname' , crop_name )
             # print('image '  , image_file )
             
@@ -56,7 +56,7 @@ def crop_recommend(  ):
          crop_name = get_crop(data)
 
         except Exception as e:
-            print('errororo ' , e)
+            print('error : ' , e)
             return 'error' , 500
 
         return {'crop_name' :  crop_name}
@@ -67,11 +67,11 @@ def crop_recommend(  ):
 def fertilizer_recommend( ):   
     if request.method == 'POST':
         features = request.json
-
         try:
             fertilizer_name = get_fertilizer(features)
         except Exception as e:
-            return jsonify({'error': str(e)}), 500
+            print('error : ' ,  e)
+            return 'error', 500
 
         return {"fertilizer_name" : fertilizer_name}
         
