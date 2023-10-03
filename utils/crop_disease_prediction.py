@@ -5,7 +5,9 @@ from io import BytesIO
 from PIL import Image
 
 potato_disease_model = load_model('./saved_model/Disease_Prediction_Model/potato_disease_model.h5')
-corn_disease_model = load_model('./saved_model/Disease_Prediction_Model/potato_disease_model.h5')
+corn_disease_model = load_model('./saved_model/Disease_Prediction_Model/corn_disease_model.h5')
+rice_disease_model = load_model('./saved_model/Disease_Prediction_Model/rice_disease_model.h5')
+wheat_disease_model = load_model('./saved_model/Disease_Prediction_Model/wheat_disease_model.h5')
 
 with open( "./saved_model/Disease_Prediction_Model/crop_disease_mapping.json", 'r') as json_file:
     crop_disease_mapping = json.load(json_file)
@@ -13,15 +15,23 @@ with open( "./saved_model/Disease_Prediction_Model/crop_disease_mapping.json", '
 
 def get_pred_img(crop_type ,image_file ):
 
+
+
     if (crop_type == 'potato'):
         model = potato_disease_model 
     elif (crop_type == 'corn'):
             model = corn_disease_model 
+    elif (crop_type == 'rice'):
+        #     print('select rice crop')
+            model = rice_disease_model 
+    elif (crop_type == 'wheat'):
+        #     print('select wheat crop')
+            model = wheat_disease_model 
 
     # Load and preprocess the uploaded image
     img = Image.open(BytesIO(image_file.read()))
 
-    img = img.resize((64, 64))
+    img = img.resize((256, 256))
 
     # Convert the image to a NumPy array
     img_array = np.array(img)

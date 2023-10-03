@@ -22,13 +22,13 @@ def disease_predict():
         try:         
 
             if 'image' not in request.files :
-                return jsonify({'error': 'No file part'}), 400
+                return 'No file part', 400
 
             image_file =  request.files['image']
             crop_name =  request.form.get('crop_name')
 
             if image_file.name == '':
-                return  jsonify({'error': 'No selected file'}), 400
+                return  'No selected file', 400
 
 
             disease_name = get_pred_img( crop_name , image_file)
@@ -39,10 +39,9 @@ def disease_predict():
             
             return {'diseaseName' : disease_name}
 
-
         except Exception as e:
-            print('errererere , ' , e) 
-            return jsonify({'error': str(e)}), 500
+            print('error , ' , str(e)) 
+            return 'error', 500
 
 
 
